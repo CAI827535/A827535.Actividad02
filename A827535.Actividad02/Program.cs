@@ -16,8 +16,8 @@ namespace A827535.Actividad02
             int NroCurso = 0;
             int Capacidad = 0;
             int CapacidadTotal = 0;
-            int CantidadAlumnos = 0;
-            int CantidadCursos = 0;
+            int CantAlumnos = 0;
+            int CantCursos = 0;
             string Condicion;
             bool Flag;
 
@@ -46,7 +46,7 @@ namespace A827535.Actividad02
                 } while (Flag == false);
 
                 Alumnos.Add(NroRegistro, NroRanking);
-                CantidadAlumnos += 1;
+                CantAlumnos += 1;
 
                 do
                 {
@@ -64,7 +64,7 @@ namespace A827535.Actividad02
             {
                 do
                 {
-                    Console.WriteLine("Ingrese Nro del Curso:");
+                    Console.WriteLine("Ingrese cod. del curso:");
                     Ingreso = Console.ReadLine();
                     Flag = ValidarNumero(Ingreso, ref NroCurso);
                 } while (Flag == false);
@@ -78,7 +78,7 @@ namespace A827535.Actividad02
 
 
                 Cursos.Add(NroCurso, Capacidad);
-                CantidadCursos += 1;
+                CantCursos += 1;
                 CapacidadTotal += Capacidad;
 
                 do
@@ -93,13 +93,13 @@ namespace A827535.Actividad02
             } while (Condicion == "SI");
 
 
-            //Ordenamiento por ranking del alumno
+            //Ordenamiento x ranking
             Alumnos = Alumnos.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
             Cursos = Cursos.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
-            //Visualización de los datos cargados
-            Console.WriteLine("La cantidad de cursos es: " + CantidadCursos);
-            Console.WriteLine("La cantidad de alumnos es: " + CantidadAlumnos);
+            //Visualización de los datos cargados por pantalla
+            Console.WriteLine("La cantidad de alumnos es: " + CantAlumnos);
+            Console.WriteLine("La cantidad de cursos es: " + CantCursos);
             Console.WriteLine("La capacidad total de alumnos es: " + CapacidadTotal);
 
 
@@ -110,11 +110,11 @@ namespace A827535.Actividad02
 
             if (!int.TryParse(Numero, out Salida))
             {
-                Console.WriteLine("Usted debe ingresar un dato númerico");
+                Console.WriteLine("Ingrese solo un dato positivo");
             }
             else if (Salida <= 0)
             {
-                Console.WriteLine("Usted debe ingresar un numero positivo.");
+                Console.WriteLine("Solo ingresar un nro positivo");
             }
             else
             {
@@ -123,13 +123,13 @@ namespace A827535.Actividad02
 
             return Flag;
         }
-        private bool ValidarVacio(string Valor, string CampoDependiendoDeVariable)
+        private bool ValidarVacio(string Valor, string Variable)
         {
             bool Flag = false;
 
             if (string.IsNullOrEmpty(Valor))
             {
-                Console.WriteLine("El campo " + CampoDependiendoDeVariable + " no puede estar vacio");
+                Console.WriteLine("El campo " + Variable + " debe completarse");
             }
             else
             {
